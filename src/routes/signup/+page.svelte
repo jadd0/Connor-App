@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+	import Input from '../__components/__input/+page.svelte'
 
 	let username = "";
 	let password = "";
 	let name = "";
+
 	let email = "";
+	$: console.log(email)
 
 
 	let wrong = false;
@@ -93,24 +96,12 @@
 
 <body>
 	<div id="loginForm">
-		<div class="inputHolder">
-			<input type="text" class="userInput" bind:value={email} required />
-			<span class="floatingLabel">Email address</span>
-		</div>
-		<div class="inputHolder">
-			<input type="text" class="userInput" bind:value={username} required />
-			<span class="floatingLabel">Username</span>
-		</div>
-		<div class="inputHolder">
-			<input type="text" class="userInput" bind:value={name} required />
-			<span class="floatingLabel">Name</span>
-		</div>
+		<Input prop='Email' bind:data={email} />
+		<Input prop='Username' bind:data={username} />
+		<Input prop='Name' bind:data={name} />
 
 		<div id="passwordHolder">
-			<div class="inputHolder">
-				<input type="password" class="userInput" bind:value={password} required />
-				<span class="floatingLabel">Password</span>
-			</div>
+			<Input prop='Password' type='password' bind:data={password} />
 			<div id="passwordProperties">
         <span class="smallText">Min. 8 characters</span>
         <span class="smallText">Min. 1 number</span>
