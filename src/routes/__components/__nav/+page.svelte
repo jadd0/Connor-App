@@ -38,49 +38,47 @@
 				<span class="tooltip">Search</span>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/home">
 					<i class="bx bx-home-alt-2" />
 					<span class="links_name">Home</span>
 				</a>
 				<span class="tooltip">Home</span>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/jobs">
 					<i class="bx bx-task" />
 					<span class="links_name">Jobs</span>
 				</a>
 				<span class="tooltip">Jobs</span>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/messages">
 					<i class="bx bx-chat" />
 					<span class="links_name">Messages</span>
 				</a>
 				<span class="tooltip">Messages</span>
 			</li>
 			<li>
-				<a href="#">
-					<i class='bx bx-bell'></i>
+				<a href="/notifications">
+					<i class="bx bx-bell" />
 					<span class="links_name">Notifications</span>
 				</a>
 				<span class="tooltip">Notifications</span>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/user">
 					<i class="bx bx-user" />
 					<span class="links_name">User</span>
 				</a>
 				<span class="tooltip">User</span>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/settings">
 					<i class="bx bx-cog" />
 					<span class="links_name">Settings</span>
 				</a>
 				<span class="tooltip">Settings</span>
 			</li>
-
-			
 
 			<li class="profile">
 				<div class="profile-details">
@@ -247,7 +245,7 @@
 	}
 
 	.sidebar.open .bx-search:hover {
-		background: #393939 !important;
+		background: #262626 !important;
 		color: #fff;
 	}
 	.sidebar .bx-search:hover {
