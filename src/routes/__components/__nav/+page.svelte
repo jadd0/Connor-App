@@ -3,8 +3,7 @@
 	let closeBtn: any;
 	let searchBtn: any;
 
-	let sidebarOpen: boolean = false
-
+	let sidebarOpen: boolean = false;
 
 	function closeClick() {
 		sidebar.classList.toggle('open');
@@ -26,90 +25,79 @@
 </script>
 
 <body>
-<div class="sidebar {sidebarOpen ? 'open' : ''}" bind:this={sidebar}>
-	<div class="logo-details">
-		<i class="bx bxl-c-plus-plus icon" />
-		<div class="logo_name">CodingLab</div>
-		<i class="bx bx-menu" id="btn" bind:this={closeBtn} on:click={closeClick} />
-	</div>
-	<ul class="nav-list">
-		<li>
-			<i class="bx bx-search" bind:this={searchBtn} on:click={searchClick} />
-			<input type="text" placeholder="Search..." />
-			<span class="tooltip">Search</span>
-		</li>
-		<li>
-			<a href="#">
-				<i class="bx bx-grid-alt" />
-				<span class="links_name">Dashboard</span>
-			</a>
-			<span class="tooltip">Dashboard</span>
-		</li>
-		<li>
-			<a href="#">
-				<i class="bx bx-user" />
-				<span class="links_name">User</span>
-			</a>
-			<span class="tooltip">User</span>
-		</li>
-		<li>
-			<a href="#">
-				<i class="bx bx-chat" />
-				<span class="links_name">Messages</span>
-			</a>
-			<span class="tooltip">Messages</span>
-		</li>
-		<li>
-			<a href="#">
-				<i class="bx bx-pie-chart-alt-2" />
-				<span class="links_name">Analytics</span>
-			</a>
-			<span class="tooltip">Analytics</span>
-		</li>
-		<li>
-			<a href="#">
-				<i class="bx bx-folder" />
-				<span class="links_name">File Manager</span>
-			</a>
-			<span class="tooltip">Files</span>
-		</li>
-		<li>
-			<a href="#">
-				<i class="bx bx-cart-alt" />
-				<span class="links_name">Order</span>
-			</a>
-			<span class="tooltip">Order</span>
-		</li>
-		<li>
-			<a href="#">
-				<i class="bx bx-heart" />
-				<span class="links_name">Saved</span>
-			</a>
-			<span class="tooltip">Saved</span>
-		</li>
-		<li>
-			<a href="#">
-				<i class="bx bx-cog" />
-				<span class="links_name">Setting</span>
-			</a>
-			<span class="tooltip">Setting</span>
-		</li>
-		<li class="profile">
-			<div class="profile-details">
-				<!--<img src="profile.jpg" alt="profileImg">-->
-				<div class="name_job">
-					<div class="name">Prem Shahi</div>
-					<div class="job">Web designer</div>
+	<div class="sidebar {sidebarOpen ? 'open' : ''}" bind:this={sidebar}>
+		<div class="logo-details">
+			<i class="bx bxl-c-plus-plus icon" />
+			<div class="logo_name">CodingLab</div>
+			<i class="bx bx-menu" id="btn" bind:this={closeBtn} on:click={closeClick} />
+		</div>
+		<ul class="nav-list">
+			<li>
+				<i class="bx bx-search" bind:this={searchBtn} on:click={searchClick} />
+				<input type="text" placeholder="Search..." />
+				<span class="tooltip">Search</span>
+			</li>
+			<li>
+				<a href="#">
+					<i class="bx bx-home-alt-2" />
+					<span class="links_name">Home</span>
+				</a>
+				<span class="tooltip">Home</span>
+			</li>
+			<li>
+				<a href="#">
+					<i class="bx bx-task" />
+					<span class="links_name">Jobs</span>
+				</a>
+				<span class="tooltip">Jobs</span>
+			</li>
+			<li>
+				<a href="#">
+					<i class="bx bx-chat" />
+					<span class="links_name">Messages</span>
+				</a>
+				<span class="tooltip">Messages</span>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bx-bell'></i>
+					<span class="links_name">Notifications</span>
+				</a>
+				<span class="tooltip">Notifications</span>
+			</li>
+			<li>
+				<a href="#">
+					<i class="bx bx-user" />
+					<span class="links_name">User</span>
+				</a>
+				<span class="tooltip">User</span>
+			</li>
+			<li>
+				<a href="#">
+					<i class="bx bx-cog" />
+					<span class="links_name">Settings</span>
+				</a>
+				<span class="tooltip">Settings</span>
+			</li>
+
+			
+
+			<li class="profile">
+				<div class="profile-details">
+					<!--<img src="profile.jpg" alt="profileImg">-->
+					<div class="name_job">
+						<div class="name">Prem Shahi</div>
+						<div class="job">Web designer</div>
+					</div>
 				</div>
-			</div>
-			<i class="bx bx-log-out" id="log_out" />
-		</li>
-	</ul>
-</div>
+				<i class="bx bx-log-out" id="log_out" />
+			</li>
+		</ul>
+	</div>
 </body>
 
 <style>
-	@import 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css';
+	@import 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css';
 
 	@font-face {
 		font-family: 'Jakarta';
@@ -226,7 +214,6 @@
 		display: none;
 	}
 
-
 	.sidebar input {
 		font-size: 15px;
 		color: #fff;
@@ -250,16 +237,21 @@
 		left: 0;
 		transform: translateY(-50%);
 		font-size: 22px;
-		background: #262626;
+		background: #1b1b1b !important;
 		color: #fff;
+		transition: all 0.2s ease-in-out;
 	}
-	.sidebar.open .bx-search:hover {
+
+	.sidebar.open .bx-search {
 		background: #262626 !important;
+	}
+
+	.sidebar.open .bx-search:hover {
+		background: #393939 !important;
 		color: #fff;
 	}
 	.sidebar .bx-search:hover {
-		background: #fff !important;
-		color: #262626;
+		background: #383838 !important;
 	}
 	.sidebar li a {
 		display: flex;
@@ -269,10 +261,10 @@
 		align-items: center;
 		text-decoration: none;
 		transition: all 0.4s ease;
-		background: #262626;
+		background: #1b1b1b;
 	}
 	.sidebar li a:hover {
-		background: #fff;
+		background: #383838;
 	}
 	.sidebar li a .links_name {
 		color: #fff;
@@ -290,7 +282,7 @@
 	.sidebar li a:hover .links_name,
 	.sidebar li a:hover i {
 		transition: all 0.5s ease;
-		color: #262626;
+		/* color: #262626; */
 	}
 	.sidebar li i {
 		height: 50px;
