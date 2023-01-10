@@ -10,8 +10,9 @@ const DB = get(db);
 export const GET: any = async ({ request }) => {
 	
   const user = await DB.getValue({ table: 'Users', value: { username: 'jadd' } })
-  const job = await DB.getValue({ table: 'Jobs', value: { uuid: '553b9ef4-809e-4c04-85a7-b03e63ebf435' }})
-  console.log({job})
-  await Job.completeJob({ jobID: job.uuid, user: user.uuid, amountPaid: 12 })
+  console.log(user)
+  // await Job.activeJob({ user: user.uuid, jobID: '74446ea9-2d7e-4694-afca-b6abe1b20dd9', toBeCompletedDate: new Date()})
+  // await Job.completeJob({ jobID: '74446ea9-2d7e-4694-afca-b6abe1b20dd9', user: user.uuid, amountPaid: 12 })
+  await Job.createReview({ user: user.uuid, reviewedUser: user.uuid, completedJobID: 'c1cf2b7f-66c7-47d4-8163-79d41d6056e5', review: 8, comment: 'pretty good!'})
 	return new Response('hello');
 }
