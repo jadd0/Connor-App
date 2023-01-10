@@ -36,5 +36,5 @@ export const POST: any = async ({ request }) => {
 		);
 	}
 
-	return new Response(200, 'Job created successfully.');
+	return new Response('Job created successfully.');
 };
