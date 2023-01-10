@@ -6,35 +6,48 @@ export class Job extends DB {
 	}
 
 	async checkNotThere(table: string, value: any) {
-    const res = await this.getValue({ table, value })
-    
-    if (res) return false
-    return true
-  }
+		const res = await this.getValue({ table, value });
+
+		if (res) return false;
+		return true;
+	}
+
+	async checkUser(user: string, completedUser: string, jobID: string) {
+		const completedJob = await this.getValue({ table: 'CompletedJobs', value: { uuid: jobID } });
+		if (!completedJob) return false;
+
+		const job = await this.getValue({ table: 'Jobs', value: { uuid: completedJob.jobID } });
+		if (!job) return false;
+
+		if (job.user != user || completedJob.user != completedUser) return false;
+
+		return true;
+	}
 
 	async createJob(config: { title: string; description: string; user: string; price: number }) {
 		const { title, description, user, price } = config;
 
 		const uuid: string = this.generateUUID();
-    console.log(uuid)
+		console.log(uuid);
 		const createRes = await this.newValue({
 			table: 'Jobs',
-			values: { title, description, user, uuid: uuid, price }
+			values: { title, description, user, uuid, price }
 		});
-   
+		console.log(createRes);
+
 		if (!createRes) return false;
 
 		return true;
 	}
 
-	async completeJob(config: { jobID: string; user: string; amountPaid: number, review: number }) {
-		const { jobID, user, amountPaid, review } = config;
+	async completeJob(config: { jobID: string; user: string; amountPaid: number }) {
+		const { jobID, user, amountPaid } = config;
 
 		const uuid: string = this.generateUUID();
 
 		const createRes = await this.newValue({
 			table: 'CompletedJobs',
-			values: { jobID, user, uuid, amountPaid, review }
+			values: { jobID, user, uuid, amountPaid }
 		});
 		if (!createRes) return false;
 
@@ -47,7 +60,7 @@ export class Job extends DB {
 	async activeJob(config: { jobID: string; user: string; toBeCompletedDate: Date }) {
 		const { jobID, user, toBeCompletedDate } = config;
 
-    if (!await this.checkNotThere('ActiveJobs', { jobID, user })) return false
+		if (!(await this.checkNotThere('ActiveJobs', { jobID, user }))) return false;
 
 		const uuid = this.generateUUID();
 
@@ -58,6 +71,30 @@ export class Job extends DB {
 
 		if (!createRes) return false;
 
+		return true;
+	}
+
+	async createReview(config: {
+		user: string;
+		reviewedUser: string;
+		completedJobID: string;
+		review: number;
+		comment: string;
+	}) {
+		const { user, reviewedUser, completedJobID, review, comment } = config;
+
+		const check = await this.checkUser(user, reviewedUser, completedJobID);
+	
+		if (!check) return false;
+
+		const res = await this.newValue({
+			table: 'Reviews',
+			values: { uuid: this.generateUUID(), user, reviewedUser, jobID: completedJobID, review, comment }
+		});
+
+		console.log(res)
+
+		if (!res) return false;
 		return true;
 	}
 }
