@@ -2,6 +2,17 @@
 	font-family: 'Circular';
 	src: url('/fonts/CircularStd-Book.otf');
 }
+
+@font-face {
+	font-family: 'BoldCircular';
+	src: url('/fonts/FontsFree-Net-CircularStd-Bold.ttf')
+}
+
+@font-face {
+	font-family: 'BolderCircular';
+	src: url('/fonts/FontsFree-Net-CircularStd-Black.ttf');
+}
+
 body {
 	overflow-x: hidden;
 	margin: 0;
@@ -162,8 +173,7 @@ p {
 h1 {
 	font-size: 40px;
 	font-weight: 700;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	margin: 0 auto;
 	color: white;
 }
 
@@ -185,7 +195,7 @@ a {
 	text-decoration: none;
 }
 
-#loginButton {
+.loginButton {
 	margin: 0 auto;
 	margin-top: 10px;
 	width: 300px;
@@ -198,7 +208,7 @@ a {
 	transition: all 0.2s linear;
 }
 
-#loginButton:hover {
+.loginButton:hover {
 	background: rgb(56, 56, 56);
 }
 

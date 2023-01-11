@@ -108,7 +108,7 @@
       </div>
 		</div>
 
-		<button id="loginButton" on:click={submit}>Sign Up</button>
+		<button class="loginButton" on:click={submit}>Sign Up</button>
 	</div>
 </body>
 
