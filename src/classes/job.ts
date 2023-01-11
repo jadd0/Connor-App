@@ -24,14 +24,14 @@ export class Job extends DB {
 		return true;
 	}
 
-	async createJob(config: { title: string; description: string; user: string; price: number }) {
-		const { title, description, user, price } = config;
+	async createJob(config: { title: string; description: string; user: string; type: string; price: number }) {
+		const { title, description, user, type, price } = config;
 
 		const uuid: string = this.generateUUID();
 		console.log(uuid);
 		const createRes = await this.newValue({
 			table: 'Jobs',
-			values: { title, description, user, uuid, price }
+			values: { title, description, user, uuid, price, type }
 		});
 		console.log(createRes);
 
