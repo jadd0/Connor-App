@@ -1,4 +1,12 @@
 <script lang="ts">
+	export let data: any
+	let user: {
+		username: string,
+		role: string,
+		uuid: string,
+		name: string
+	} = data.auth
+
 	let sidebar: any;
 	let closeBtn: any;
 	let searchBtn: any;
@@ -24,75 +32,73 @@
 	}
 </script>
 
-<body>
-	<div class="sidebar {sidebarOpen ? 'open' : ''}" bind:this={sidebar}>
-		<div class="logo-details">
-			<i class="bx bxl-c-plus-plus icon" />
-			<div class="logo_name">CodingLab</div>
-			<i class="bx bx-menu" id="btn" bind:this={closeBtn} on:click={closeClick} />
-		</div>
-		<ul class="nav-list">
-			<li>
-				<i class="bx bx-search" bind:this={searchBtn} on:click={searchClick} />
-				<input type="text" placeholder="Search..." />
-				<span class="tooltip">Search</span>
-			</li>
-			<li>
-				<a href="/home">
-					<i class="bx bx-home-alt-2" />
-					<span class="links_name">Home</span>
-				</a>
-				<span class="tooltip">Home</span>
-			</li>
-			<li>
-				<a href="/jobs">
-					<i class="bx bx-task" />
-					<span class="links_name">Jobs</span>
-				</a>
-				<span class="tooltip">Jobs</span>
-			</li>
-			<li>
-				<a href="/messages">
-					<i class="bx bx-chat" />
-					<span class="links_name">Messages</span>
-				</a>
-				<span class="tooltip">Messages</span>
-			</li>
-			<li>
-				<a href="/notifications">
-					<i class="bx bx-bell" />
-					<span class="links_name">Notifications</span>
-				</a>
-				<span class="tooltip">Notifications</span>
-			</li>
-			<li>
-				<a href="/user">
-					<i class="bx bx-user" />
-					<span class="links_name">User</span>
-				</a>
-				<span class="tooltip">User</span>
-			</li>
-			<li>
-				<a href="/settings">
-					<i class="bx bx-cog" />
-					<span class="links_name">Settings</span>
-				</a>
-				<span class="tooltip">Settings</span>
-			</li>
-
-			<li class="profile">
-				<div class="profile-details">
-					<!--<img src="profile.jpg" alt="profileImg">-->
-					<div class="name_job">
-						<div class="name">Prem Shahi</div>
-						<div class="job">Web designer</div>
-					</div>
-				</div>
-				<i class="bx bx-log-out" id="log_out" />
-			</li>
-		</ul>
+<div class="sidebar {sidebarOpen ? 'open' : ''}" bind:this={sidebar}>
+	<div class="logo-details">
+		<!-- <i class="bx bxl-c-plus-plus icon" /> -->
+		<!-- <div class="logo_name">CodingLab</div> -->
+		<i class="bx bx-menu" id="btn" bind:this={closeBtn} on:click={closeClick} />
 	</div>
-</body>
+	<ul class="nav-list">
+		<li>
+			<i class="bx bx-search" bind:this={searchBtn} on:click={searchClick} />
+			<input type="text" placeholder="Search..." />
+			<span class="tooltip">Search</span>
+		</li>
+		<li>
+			<a href="/home">
+				<i class="bx bx-home-alt-2" />
+				<span class="links_name">Home</span>
+			</a>
+			<span class="tooltip">Home</span>
+		</li>
+		<li>
+			<a href="/jobs">
+				<i class="bx bx-task" />
+				<span class="links_name">Jobs</span>
+			</a>
+			<span class="tooltip">Jobs</span>
+		</li>
+		<li>
+			<a href="/messages">
+				<i class="bx bx-chat" />
+				<span class="links_name">Messages</span>
+			</a>
+			<span class="tooltip">Messages</span>
+		</li>
+		<li>
+			<a href="/notifications">
+				<i class="bx bx-bell" />
+				<span class="links_name">Notifications</span>
+			</a>
+			<span class="tooltip">Notifications</span>
+		</li>
+		<li>
+			<a href="/user">
+				<i class="bx bx-user" />
+				<span class="links_name">User</span>
+			</a>
+			<span class="tooltip">User</span>
+		</li>
+		<li>
+			<a href="/settings">
+				<i class="bx bx-cog" />
+				<span class="links_name">Settings</span>
+			</a>
+			<span class="tooltip">Settings</span>
+		</li>
+
+		<li class="profile">
+			<div class="profile-details">
+				<img src="/profile.jpg" />
+				<div class="name_job">
+					<div class="name">{user.name}</div>
+					<div class="job">{user.role}</div>
+				</div>
+			</div>
+			<i class="bx bx-log-out" id="log_out" />
+		</li>
+	</ul>
+</div>
 
 <style>
 	@import 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css';
@@ -306,6 +312,7 @@
 		display: flex;
 		align-items: center;
 		flex-wrap: nowrap;
+		margin-top: -2px;
 	}
 	.sidebar li img {
 		height: 45px;
