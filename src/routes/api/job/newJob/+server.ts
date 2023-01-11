@@ -17,7 +17,7 @@ export const POST: any = async ({ request }) => {
 		throw error(401, 'Not authorised');
 	}
 
-	const { title, description, price } = await request.json();
+	const { title, description, price, type } = await request.json();
 	if (title == undefined || description == undefined || price == undefined) {
 		throw error(406, 'Missing either title, description or price');
 	}
@@ -26,6 +26,7 @@ export const POST: any = async ({ request }) => {
 		title,
 		description,
 		price,
+		type,
 		user: auth.uuid
 	});
 
