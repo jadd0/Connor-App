@@ -116,7 +116,7 @@ export class Auth extends DB {
 		const data = await this.getValue({
 			table: 'Users',
 			value: { 'authKey': token },
-			returnValues: 'username, uuid, name',
+			returnValues: 'username, uuid, name, role',
 		});
 
 		if (data.length == 0 || data == false) return false;
