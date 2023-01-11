@@ -2,6 +2,13 @@
   import Nav from '../../__components/__nav/+page.svelte'
   import Input from '../../__components/__input/+page.svelte'
 
+  export let data: {
+		username: string,
+		name: string,
+		uuid: string,
+		role: string
+	};
+
   let title: string = ''
   let description: string = '';
   let price: number = 0;
@@ -40,7 +47,7 @@
 </script>
 
 <body>
-  <Nav />
+  <Nav data={data}/>
 
   <div class="holder">
     <h1>Post a job</h1>

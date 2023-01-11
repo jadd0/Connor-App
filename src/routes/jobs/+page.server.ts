@@ -20,6 +20,6 @@ export const load: any = async ({ request }) => {
 	}
 
 	return {
-		username: auth
+		auth
 	}
 }

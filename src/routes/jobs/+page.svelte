@@ -1,9 +1,17 @@
-<script>
+<script lang='ts'>
   import Nav from '../__components/__nav/+page.svelte'
+
+  export let data: {
+		username: string,
+		name: string,
+		uuid: string,
+		role: string
+	};
+  
 </script>
 
 <body>
-  <Nav />
+  <Nav data={data}/>
 
   <div class="holder">
     <h1>What are you looking to do?</h1>
