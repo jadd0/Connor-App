@@ -14,12 +14,12 @@ export const load: any = async ({ request }) => {
 	}
 
 	const auth = await Auth.checkKey(cookie.key)
-  console.log(auth)
+
 	if (!auth) {
 		throw redirect(307, "/login");
 	}
 
 	return {
-		auth
+		...auth
 	}
 }

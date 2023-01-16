@@ -21,6 +21,6 @@ export const load: any = async ({ request }) => {
 	}
 
 	return {
-		auth
+		...auth
 	}
 }
