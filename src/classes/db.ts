@@ -45,9 +45,31 @@ export class DB {
 			.select(returnValues)
 			.match(value);
 
-		if (data.length == 0) return false;
+		if (data.length == 0 || error != undefined) return false;
 		return data[0];
 	}
+
+	async getRangeValues(config: {
+		table: string;
+		value: any;
+		range: number[];
+		returnValues?: any;
+	}) {
+		let { table, value, range, returnValues } = config;
+
+		if (returnValues == undefined) {
+			returnValues = '*';
+		}
+
+		const { data, error } = await this.supabase
+			.from(table)
+			.select(returnValues)
+			.match(value)
+			.range(range[0], range[1]);
+
+		if (data.length == 0 || error!= undefined) return false;
+		return data;
+	}	
 
 	async updateValue(config: {
 		table: string;
