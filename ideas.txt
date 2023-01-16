@@ -1,2 +1,15 @@
 to see jobs for taking:
   get jobs from Jobs which arent in ActiveJobs or CompletedJobs.
+
+prices:
+  deposit at the start 10% full amount
+    if they pull out the writer keeps
+    we dont take any commission
+
+  11p per word
+  round to next pound
+
+  10% commission
+
+  £3 amount to 'boost' to auto accept the next job
+    once job is completed they pay £3
