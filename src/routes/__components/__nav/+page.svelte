@@ -1,11 +1,10 @@
 <script lang="ts">
-	export let data: any
-	let user: {
+	export let data: {
 		username: string,
 		role: string,
 		uuid: string,
 		name: string
-	} = data.auth
+	}
 
 	let sidebar: any;
 	let closeBtn: any;
@@ -91,8 +90,8 @@
 			<div class="profile-details">
 				<img src="/profile.jpg" />
 				<div class="name_job">
-					<div class="name">{user.name}</div>
-					<div class="job">{user.role}</div>
+					<div class="name">{data.name}</div>
+					<div class="job">{data.role}</div>
 				</div>
 			</div>
 			<i class="bx bx-log-out" id="log_out" />

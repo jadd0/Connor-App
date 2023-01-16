@@ -64,7 +64,7 @@
 		
     <a href="/forgotpassword"><span>Forgotten password?</span></a>
 
-		<button id="loginButton" on:click={submit}>Login</button>
+		<button class="loginButton" on:click={submit}>Login</button>
 	</div>
 </body>
 
