@@ -1,4 +1,4 @@
-import { db, auth } from '../../../stores'
+import { db, auth } from '../../stores/objects'
 import { get } from 'svelte/store';
 
 const DB = get(db)
@@ -9,13 +9,14 @@ export const POST: any = async ({ request }) => {
 	req.password = await Auth.hashPassword(req.password);
 	req.uuid = DB.generateUUID();
 
+	const key = Auth.Parse.genetateToken()
 	const res = await Auth.signUp(req)
 
 	if (!res) {
 		return new Response('User with email/username already exists', {status: 401})
 	}
 	
-	const key = Auth.Parse.genetateToken()
+	// const key = Auth.Parse.genetateToken()
 	const keyRes = await Auth.changeKey(req.username, key)
 
 	if (!keyRes) {

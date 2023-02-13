@@ -1,5 +1,5 @@
 import { error, redirect } from '@sveltejs/kit';
-import { job, auth } from '../../../../stores';
+import { job, auth } from '../../stores/objects/objects';
 import { get } from 'svelte/store';
 
 const Job = get(job);

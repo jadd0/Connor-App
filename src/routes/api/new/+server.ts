@@ -1,5 +1,5 @@
-import { job } from '../../../stores'
-import { db } from '../../../stores';
+import { job } from '../../stores/objects'
+import { db } from '../../stores/objects';
 import { get } from 'svelte/store';
 
 

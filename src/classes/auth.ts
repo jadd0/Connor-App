@@ -82,7 +82,7 @@ export class Auth extends DB {
 
 		const res = await this.comparePassword(password, user.password);
 		if (!res) return false;
-		return user.username;
+		return user.accessKey;
 	}
 
 	public checkDate(expiry: any) {

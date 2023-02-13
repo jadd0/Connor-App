@@ -25,6 +25,7 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/supabase-js": "^2.2.3",
+		"animejs": "^3.2.1",
 		"bcryptjs": "^2.4.3",
 		"supabase": "^1.29.5"
 	}

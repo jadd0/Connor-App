@@ -1,5 +1,5 @@
 import { error, redirect } from '@sveltejs/kit';
-import { job, auth, db } from '../../../../stores';
+import { job, auth, db } from '../../stores/objects/objects';
 import { get } from 'svelte/store';
 
 const Job = get(job);
@@ -8,13 +8,7 @@ const DB = get(db);
 
 // jobID = Jobs.uuid
 async function checkCorrectUser(jobID: string, userID: string) {
-  const job = await DB.getValue({ table: 'ActiveJobs', value: { jobID } })
   
-  if (!job) return false
-
-  if (job.user != userID) return false
-  
-  return true
 }
 
 /** @type {import('./$types').Load} */
@@ -29,8 +23,8 @@ export const POST: any = async ({ request }) => {
 		throw error(401, 'Not authorised');
 	}
 
-	const { amount, type } = await request.json();
-	if (amount == undefined || type == undefined) {
+	const { amount, type, range } = await request.json();
+	if (amount == undefined || type == undefined || range == undefined) {
 		throw error(406, 'Missing either job ID or amount paid');
 	}
 
@@ -38,7 +32,13 @@ export const POST: any = async ({ request }) => {
     throw error(401, 'Clients are not allowed to view different jobs');
   }
 
-	const res = await DB.getValue;
+	const res = await DB.getRangeValues({ table: 'Jobs', value: { type }, range: [range[0], range[1]] });
+
+  // get values which are in jobs but not in active jobs
+
+
+
+
 
 	if (!res) {
 		throw error(
@@ -47,5 +47,5 @@ export const POST: any = async ({ request }) => {
 		);
 	}
 
-	return new Response('Job created successfully.');
+	return new Response(res);
 };

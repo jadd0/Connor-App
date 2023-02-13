@@ -1,6 +1,6 @@
 
 import { error, redirect } from "@sveltejs/kit";
-import { db, auth } from '../../../stores'
+import { db, auth } from '../../stores/objects'
 import { get } from 'svelte/store';
 
 const DB = get(db)

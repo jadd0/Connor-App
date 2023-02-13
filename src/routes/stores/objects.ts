@@ -1,14 +1,14 @@
 import { writable } from 'svelte/store';
 import { get } from 'svelte/store';
 
-import { supabase } from './supabaseClient';
+import { supabase } from '../../supabaseClient';
 import bcryptjs from 'bcryptjs';
 
-import { DB } from './classes/db';
-import { Auth } from './classes/auth';
-import { Parse } from './classes/parse';
-import { User } from './classes/user';
-import { Job } from './classes/job';
+import { DB } from '../../classes/db';
+import { Auth } from '../../classes/auth';
+import { Parse } from '../../classes/parse';
+import { User } from '../../classes/user';
+import { Job } from '../../classes/job';
 
 // INIT
 

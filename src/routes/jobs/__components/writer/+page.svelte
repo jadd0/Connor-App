@@ -45,19 +45,20 @@
     width: 100%;
     height: 150vh;
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto;
     gap: 0px 50px;
   }
 
   .holder > #content > .job {
-    height: 300px;
-    background: black;
+    height: 400px;
+    background-image: linear-gradient(to bottom right, #4b62fa, #ba89dd, #fdb973);
+    border-radius: 20px;
   }
 
-  .holder > #content > .job > .colourHolder {
+  /* .holder > #content > .job > .colourHolder {
     height: 50px;
     width: 100%;
-  }
+  } */
 
 
 </style>

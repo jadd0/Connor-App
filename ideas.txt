@@ -13,3 +13,8 @@ prices:
 
   £3 amount to 'boost' to auto accept the next job
     once job is completed they pay £3
+
+
+auth:
+  refresh token perma
+    
