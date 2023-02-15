@@ -97,20 +97,20 @@ export class DB {
 		const { data, error } = await this.supabase
 			.from(table)
 			.update({ [columnToChange]: valueToChange })
-			.match({ [columnToMatch]: valueToMatch });
+			.match({ [columnToMatch]: valueToMatch })
+			.select()
 
 
 		if (error != undefined) return false;
-		return true;
+		return data;
 	}
 
 	async newValue(config: { table: string; values: any }) {
 		const { table, values } = config;
 
-		const { data, error } = await this.supabase.from(table).insert([values]);
-		console.log({data, error})
+		const { data, error } = await this.supabase.from(table).insert([values]).select();
 		if (error != undefined) return false
-		return true
+		return data
 	}
 
 	async deleteValue(config: { table: string; values: any }) {

@@ -92,18 +92,41 @@ export class Auth extends DB {
 		return true;
 	}
 
-	async changeKey(username: string, key: string) {
-		console.log('ufdsxbfgs');
+	async changeKey(user: string, key: string) {
+		let res1
 		const res = await this.updateValue({
-			table: 'Users',
+			table: 'Keys',
 			valueToChange: key,
-			columnToChange: 'authKey',
-			valueToMatch: username,
-			columnToMatch: 'username',
+			columnToChange: 'value',
+			valueToMatch: user,
+			columnToMatch: 'user',
 		});
 
-		if (!res) return false;
-		return true;
+		if (!res) {
+			res1 = await this.newValue({
+				table: 'Keys',
+				values: {
+					value: key,
+					user
+				}
+			})
+
+			if (!res1) return false
+			return res1.value
+		}
+
+		return res.value;
+	}
+
+	public async checkAccessKey(token: string) {
+		const data = await this.getValue({
+			table: 'Users',
+			value: { 'accessKey': token },
+			returnValues: 'username, uuid, name, role',
+		});
+
+		if (data.length == 0 || data == false) return false;
+		return data;
 	}
 
 	public async checkKey(token: string) {
@@ -116,7 +139,6 @@ export class Auth extends DB {
 		const data = await this.getValue({
 			table: 'Users',
 			value: { 'authKey': token },
-			returnValues: 'username, uuid, name, role',
 		});
 
 		if (data.length == 0 || data == false) return false;
