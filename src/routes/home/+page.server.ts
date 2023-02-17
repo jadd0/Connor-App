@@ -1,32 +1,22 @@
-
 import { error, redirect } from "@sveltejs/kit";
-// import { db, auth } from '../stores/objects'
-import { get } from 'svelte/store';
-
-
-async function getAuth(cookies: any): any {
-	const res = await fetch("/api/auth", {
-		method: "post",
-		headers: {
-			Accept: "application/json",
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			cookies
-		}),
-	});
-	return await res.json()
-}
+import { authFlow } from '../../functions/auth'
 
 /** @type {import('./$types').Load} */
-export const load: any = async ({ request }) => {
-  const res = await getAuth(request.headers.get("cookie"))
+export const load: any = async ({ request, cookies, fetch }) => {
+  const auth = await authFlow(request.headers.get("cookie"), fetch)
 
-	if (!res) {
+	if (!auth) {
 		throw redirect(307, "/login");
 	}
-
 	
+	cookies.set('key', auth.newKey, {
+		path: '/',
+		HostOnly: false,
+		Secure: 'lax',
+		httpOnly: true,
+		SameSite: 'Strict'
+	});
+
 	return {
 		...auth
 	}

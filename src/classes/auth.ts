@@ -34,7 +34,7 @@ export class Auth extends DB {
 
 		const res = await this.newValue({ table: 'Users', values: userDetails });
 
-		console.log(res);
+		(res);
 		if (res) {
 			return true;
 		}
@@ -45,7 +45,7 @@ export class Auth extends DB {
 
 	public async checkAvailability(username: string, email: string) {
 		const userList = await this.getAllValues('Users');
-		console.log(userList);
+		(userList);
 		const usernameAvailability = userList.find(
 			(user: any) => user.username === username.toLowerCase()
 		);
@@ -76,7 +76,7 @@ export class Auth extends DB {
 			value: { username: username },
 		});
 
-		console.log(user);
+		(user);
 
 		if (!user) return false;
 
@@ -94,28 +94,29 @@ export class Auth extends DB {
 
 	async changeKey(user: string, key: string) {
 		let res1
+
 		const res = await this.updateValue({
 			table: 'Keys',
 			valueToChange: key,
-			columnToChange: 'value',
+			columnToChange: 'key',
 			valueToMatch: user,
 			columnToMatch: 'user',
 		});
 
-		if (!res) {
+		if (res.length == 0) {
 			res1 = await this.newValue({
 				table: 'Keys',
 				values: {
-					value: key,
+					key,
 					user
 				}
 			})
 
 			if (!res1) return false
-			return res1.value
+			return res1[0].key
 		}
 
-		return res.value;
+		return res[0].key;
 	}
 
 	public async checkAccessKey(token: string) {
@@ -124,7 +125,7 @@ export class Auth extends DB {
 			value: { 'accessKey': token },
 			returnValues: 'username, uuid, name, role',
 		});
-
+	
 		if (data.length == 0 || data == false) return false;
 		return data;
 	}
@@ -132,14 +133,18 @@ export class Auth extends DB {
 	public async checkKey(token: string) {
 		const splitToken = token.split('.');
 		const date = splitToken[0];
-
+		// console.log(splitToken)
+		
 		const res = this.checkDate(date);
+		// console.log({res})
 		if (!res) return false;
 
 		const data = await this.getValue({
-			table: 'Users',
-			value: { 'authKey': token },
+			table: 'Keys',
+			value: { 'key': token },
 		});
+
+		// console.log({data})
 
 		if (data.length == 0 || data == false) return false;
 		return data;

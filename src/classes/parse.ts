@@ -28,8 +28,9 @@ export class Parse {
 	}
 
 	generateToken(length: number, time: any): string {
-		const days = time || 129600000;
-		const expire = new Date().getTime() + days;
+		// 5 minutes
+		const ms = time || 300000;
+		const expire = new Date().getTime() + ms;
 		let key = '';
 
 		key = `${expire}.${this.generateRandomString(40)}`;

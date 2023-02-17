@@ -28,12 +28,12 @@ export class Job extends DB {
 		const { title, description, user, type, price } = config;
 
 		const uuid: string = this.generateUUID();
-		console.log(uuid);
+		(uuid);
 		const createRes = await this.newValue({
 			table: 'Jobs',
 			values: { title, description, user, uuid, price, type }
 		});
-		console.log(createRes);
+		(createRes);
 
 		if (!createRes) return false;
 
@@ -92,7 +92,7 @@ export class Job extends DB {
 			values: { uuid: this.generateUUID(), user, reviewedUser, jobID: completedJobID, review, comment }
 		});
 
-		console.log(res)
+		(res)
 
 		if (!res) return false;
 		return true;
